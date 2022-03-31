@@ -1,0 +1,70 @@
+.currentDay {
+  border: 1px solid black;
+}
+
+.btn {
+  font-size: 1.3rem;
+  text-decoration: none;
+  padding: 6px 5px;
+  width: 75%;
+  display: block;
+  margin: 5px 0;
+  border-radius: 0.2rem;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  background-color: #209ad3;
+  transform: translate(-1px, -1px);
+}
+
+.btn:hover {
+  color: #ffffff;
+  background-color: #156da8;
+  transform: translate(0, 0);
+}
+
+.form-input {
+  width: 75%;
+  padding: 1%;
+  margin: 5px 0;
+  font-size: 1.2rem;
+  border: 1px solid rgb(221, 218, 218);
+  border-radius: 0.2rem;
+  display: block;
+}
+
+.city-search {
+    border: 1px solid green;
+}
+
+.city-today {
+    border: 1px solid red;
+}
+
+.cities-saved {
+    border: 1px solid blue;
+}
+
+.forecasts {
+    border: 1px solid purple;
+}
+
+.day1 {
+    border: 1px solid black;
+}
+
+.day2 {
+    border: 1px solid black;
+}
+
+.day3 {
+    border: 1px solid black;
+}
+
+.day4 {
+    border: 1px solid black;
+}
+
+.day5 {
+    border: 1px solid black;
+}
