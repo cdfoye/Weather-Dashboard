@@ -33,6 +33,18 @@
   display: block;
 }
 
+.favorable {
+    background-color: green;
+}
+
+.moderate {
+    background-color: yellow;
+}
+
+.severe {
+    background-color: red;
+}
+
 .city-search {
     border: 1px solid green;
 }
