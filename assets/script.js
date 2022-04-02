@@ -6,6 +6,7 @@ var tempEl = document.querySelector('#temperature');
 var windEl = document.querySelector('#wind');
 var humidEl = document.querySelector('#humidity');
 var uvIndexEl = document.querySelector('#UVI');
+var clearButton = document.querySelector('#clear-btn');
 
 var savedCity;
 
@@ -304,5 +305,12 @@ var getPastCities = function(event) {
 
 // displaySaved();
 
+var clear = function() {
+    localStorage.removeItem("savedCity");
+    displaySaved();
+    renderCities();
+}
+
 userFormEl.addEventListener('submit', formSubmitHandler);
 savedCitiesEl.addEventListener("click", getPastCities);
+clearButton.addEventListener("click", clear);

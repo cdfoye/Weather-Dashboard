@@ -45,8 +45,9 @@
     background-color: red;
 }
 
-/* .city-search {
+.city-search {
     border: 1px solid green;
+    padding-left: 54px;
 }
 
 .city-today {
@@ -55,7 +56,8 @@
 
 .cities-saved {
     border: 1px solid blue;
-} */
+    padding-top: 30px;
+}
 
 .forecasts {
     border: 1px solid purple;
