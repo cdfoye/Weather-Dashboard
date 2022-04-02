@@ -7,19 +7,51 @@ var windEl = document.querySelector('#wind');
 var humidEl = document.querySelector('#humidity');
 var uvIndexEl = document.querySelector('#UVI');
 
+var savedCity;
+
 var now = moment().format("M/D/YYYY");
+
+displaySaved();
+
+function displaySaved() {
+
+    var searchedCities = JSON.parse(localStorage.getItem("savedCity"));
+
+    if (searchedCities) {
+        savedCity = searchedCities;
+    } else {
+        savedCity = [];
+    }
+    renderCities();
+}
+
+//displaySaved();
 
 var formSubmitHandler = function (event) {
   event.preventDefault();
 
   var city = getCityEl.value.trim();
 
-  if (city) {
-    getLocation(city);
+  var cityExists = false;
 
-    getCityEl.value = "";
+  if (city) {
+    for (i = 0; i < savedCity.length; i++) {
+        if (savedCity[i] === city) {
+            cityExists = true;
+            alert("This city is already saved");
+        }
+    }
   } else {
     alert("Please enter a city");
+  }
+  if (!cityExists) {
+    getLocation(city);
+
+    savedCity.push(city);
+    getCityEl.value = "";
+
+    saveCity();
+    renderCities();
   }
 };
 
@@ -44,12 +76,10 @@ var getLocation = function (location) {
 };
 
 var displayWeather = function (weatherData, cityName) {
-    var latitude = weatherData[0].lat
-    var longitude = weatherData[0].lon
+    var latitude = weatherData[0].lat;
+    var longitude = weatherData[0].lon;
 
     var apiUrl2 = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&units=imperial&appid=13aa7dd75dc2e83e06a576addbc7a591";
-
-    displayCityEL.textContent = cityName + " (" + now + ")";
 
     fetch(apiUrl2)
         .then(function (response2) {
@@ -57,10 +87,20 @@ var displayWeather = function (weatherData, cityName) {
                 console.log(response2);
                 response2.json().then(function (data2) {
                     console.log(data2);
-                    tempEl.textContent = "Temp: " + data2.current.temp;
+
+                    displayCityEL.textContent = cityName + " (" + now + ")";
+
+                    var iconURL = "http://openweathermap.org/img/wn/" + data2.current.weather[0].icon + ".png";
+                    $('#wicon-current').attr('src', iconURL);
+
+                    tempEl.textContent = "Temp: " + data2.current.temp + " °F";
+
                     windEl.textContent = "Wind: " + data2.current.wind_speed + " MPH";
+
                     humidEl.textContent = "Humidity: " + data2.current.humidity + "%";
+
                     uvIndexEl.textContent = "UV Index: " + data2.current.uvi;
+
                     if (data2.current.uvi >= 0 && data2.current.uvi <= 2) {
                         uvIndexEl.classList.add("favorable");
                     } else if (data2.current.uvi >= 3 && data2.current.uvi <= 7) {
@@ -68,6 +108,7 @@ var displayWeather = function (weatherData, cityName) {
                     } else {
                         uvIndexEl.classList.add("severe");
                     }
+
                     displayForecast(data2);
                 });
             } else {
@@ -118,31 +159,46 @@ var displayForecast = function (forecastData) {
     var getDate5 = moment(startdate, "M/D/YYYY").add(5, 'd');
     $('#date5').text(getDate5.format("M/D/YYYY"));
 
-    temp1.textContent = "Temp: " + forecastData.daily[1].temp.day;
+    temp1.textContent = "Temp: " + forecastData.daily[1].temp.day + " °F";
+
+    var icon1URL = "http://openweathermap.org/img/wn/" + forecastData.daily[1].weather[0].icon + ".png";
+    $('#wicon1').attr('src', icon1URL);
 
     wind1.textContent = "Wind: " + forecastData.daily[1].wind_speed + " MPH";
 
     humid1.textContent = "Humidity: " + forecastData.daily[1].humidity + "%";
 
-    temp2.textContent = "Temp: " + forecastData.daily[2].temp.day;
+    temp2.textContent = "Temp: " + forecastData.daily[2].temp.day + " °F";
+
+    var icon2URL = "http://openweathermap.org/img/wn/" + forecastData.daily[2].weather[0].icon + ".png";
+    $('#wicon2').attr('src', icon2URL);
 
     wind2.textContent = "Wind: " + forecastData.daily[2].wind_speed + " MPH";
 
     humid2.textContent = "Humidity: " + forecastData.daily[2].humidity + "%";
 
-    temp3.textContent = "Temp: " + forecastData.daily[3].temp.day;
+    temp3.textContent = "Temp: " + forecastData.daily[3].temp.day + " °F";
+
+    var icon3URL = "http://openweathermap.org/img/wn/" + forecastData.daily[3].weather[0].icon + ".png";
+    $('#wicon3').attr('src', icon3URL);
 
     wind3.textContent = "Wind: " + forecastData.daily[3].wind_speed + " MPH";
 
     humid3.textContent = "Humidity: " + forecastData.daily[3].humidity + "%";
 
-    temp4.textContent = "Temp: " + forecastData.daily[4].temp.day;
+    temp4.textContent = "Temp: " + forecastData.daily[4].temp.day + " °F";
+
+    var icon4URL = "http://openweathermap.org/img/wn/" + forecastData.daily[4].weather[0].icon + ".png";
+    $('#wicon4').attr('src', icon4URL);
 
     wind4.textContent = "Wind: " + forecastData.daily[4].wind_speed + " MPH";
 
     humid4.textContent = "Humidity: " + forecastData.daily[4].humidity + "%";
 
-    temp5.textContent = "Temp: " + forecastData.daily[5].temp.day;
+    temp5.textContent = "Temp: " + forecastData.daily[5].temp.day + " °F";
+
+    var icon5URL = "http://openweathermap.org/img/wn/" + forecastData.daily[5].weather[0].icon + ".png";
+    $('#wicon5').attr('src', icon5URL);
 
     wind5.textContent = "Wind: " + forecastData.daily[5].wind_speed + " MPH";
 
@@ -151,6 +207,102 @@ var displayForecast = function (forecastData) {
 
 }
 
+var saveCity = function() {
 
+    //var userSearch = getCityEl.value;
+
+    // var cityList = {
+    //     city: userSearch
+    // }
+
+    // localStorage.setItem("savedCity", userSearch);
+    //savedCity.push(userSearch);
+    localStorage.setItem("savedCity", JSON.stringify(savedCity));
+}
+
+function renderCities() {
+    // renderCity = JSON.parse(localStorage.getItem("savedCity"));
+
+    // console.log(renderCity);
+
+    // if (renderCity != null) {
+    //     for (var i = 0; i < renderCity.length; i++) {
+    //         var li = document.createElement("li");
+    //         li.setAttribute("class", "list-city");
+
+    //         var newButton = document.createElement("button");
+    //         newButton.textContent = renderCity[i].city;
+    //         newButton.classList.add("btn");
+
+    //         li.appendChild(newButton);
+    //         savedCitiesEl.appendChild(li);
+
+    //     }
+    // }
+
+    // console.log(search);
+
+    savedCitiesEl.innerHTML = "";
+
+    $('#saved-cities').empty();
+
+    
+    for (var i = 0; i < savedCity.length; i++) {
+      var newButton = document.createElement("button");
+      newButton.textContent = savedCity[i];
+      newButton.classList.add("btn");
+      newButton.setAttribute("data-city", savedCity[i]);
+      newButton.setAttribute("type", "submit");
+
+      savedCitiesEl.prepend(newButton);
+    }
+    
+}
+
+renderCities();
+
+// var displayCities = function() {
+
+//     var cityList = {
+//         city: getCityEl.value,
+//     }
+
+//     var storedCities = localStorage.getItem("savedCity");
+
+//     if (storedCities === null) {
+//         storedCities = [];
+//     } else {
+//         storedCities = JSON.parse(storedCities);
+//     }
+
+//     storedCities.push(cityList);
+
+//     var newCity = JSON.stringify(storedCities);
+
+//     renderCities(newCity);
+// }
+
+// displayCities();
+
+var getPastCities = function(event) {
+    var city = event.target.getAttribute("data-city");
+
+    if (city) {
+        getLocation(city);
+    }
+}
+
+// var displaySaved = function() {
+//     var searchedCities = JSON.parse(localStorage.getItem("savedCity"));
+
+//     if (searchedCities) {
+//         savedCity = searchedCities;
+//     } else {
+//         savedCity = [];
+//     }
+// }
+
+// displaySaved();
 
 userFormEl.addEventListener('submit', formSubmitHandler);
+savedCitiesEl.addEventListener("click", getPastCities);
