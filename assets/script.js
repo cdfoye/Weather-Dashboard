@@ -26,7 +26,22 @@ function displaySaved() {
     renderCities();
 }
 
-//displaySaved();
+function loadDefault() {
+    var city;
+    var displayDenver = "Denver";
+    var defaultCity = JSON.parse(localStorage.getItem("savedCity"));
+
+    if (defaultCity) {
+        city = defaultCity[0];
+        getLocation(city);
+    } 
+    else {
+        getLocation(displayDenver);
+    }
+
+}
+
+loadDefault();
 
 var formSubmitHandler = function (event) {
   event.preventDefault();
@@ -46,6 +61,7 @@ var formSubmitHandler = function (event) {
     alert("Please enter a city");
   }
   if (!cityExists) {
+    city = city.charAt(0).toUpperCase() + city.slice(1);
     getLocation(city);
 
     savedCity.push(city);
@@ -56,7 +72,7 @@ var formSubmitHandler = function (event) {
   }
 };
 
-var getLocation = function (location) {
+function getLocation(location) {
   var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + location + "&limit=1&appid=13aa7dd75dc2e83e06a576addbc7a591";
 
   fetch(apiUrl)
@@ -100,14 +116,23 @@ var displayWeather = function (weatherData, cityName) {
 
                     humidEl.textContent = "Humidity: " + data2.current.humidity + "%";
 
-                    uvIndexEl.textContent = "UV Index: " + data2.current.uvi;
+                    var highlight = document.createElement("mark");
+                    highlight.textContent = data2.current.uvi
+
+                    uvIndexEl.textContent = "UV Index: ";
+                    var highlight = document.createElement("mark");
+                    highlight.textContent = data2.current.uvi
+                    highlight.classList.add("highlight");
+                    uvIndexEl.append(highlight);
+
+    
 
                     if (data2.current.uvi >= 0 && data2.current.uvi <= 2) {
-                        uvIndexEl.classList.add("favorable");
+                        highlight.classList.add("favorable");
                     } else if (data2.current.uvi >= 3 && data2.current.uvi <= 7) {
-                        uvIndexEl.classList.add("moderate");
+                        highlight.classList.add("moderate");
                     } else {
-                        uvIndexEl.classList.add("severe");
+                        highlight.classList.add("severe");
                     }
 
                     displayForecast(data2);
@@ -209,39 +234,10 @@ var displayForecast = function (forecastData) {
 }
 
 var saveCity = function() {
-
-    //var userSearch = getCityEl.value;
-
-    // var cityList = {
-    //     city: userSearch
-    // }
-
-    // localStorage.setItem("savedCity", userSearch);
-    //savedCity.push(userSearch);
     localStorage.setItem("savedCity", JSON.stringify(savedCity));
 }
 
 function renderCities() {
-    // renderCity = JSON.parse(localStorage.getItem("savedCity"));
-
-    // console.log(renderCity);
-
-    // if (renderCity != null) {
-    //     for (var i = 0; i < renderCity.length; i++) {
-    //         var li = document.createElement("li");
-    //         li.setAttribute("class", "list-city");
-
-    //         var newButton = document.createElement("button");
-    //         newButton.textContent = renderCity[i].city;
-    //         newButton.classList.add("btn");
-
-    //         li.appendChild(newButton);
-    //         savedCitiesEl.appendChild(li);
-
-    //     }
-    // }
-
-    // console.log(search);
 
     savedCitiesEl.innerHTML = "";
 
@@ -262,29 +258,6 @@ function renderCities() {
 
 renderCities();
 
-// var displayCities = function() {
-
-//     var cityList = {
-//         city: getCityEl.value,
-//     }
-
-//     var storedCities = localStorage.getItem("savedCity");
-
-//     if (storedCities === null) {
-//         storedCities = [];
-//     } else {
-//         storedCities = JSON.parse(storedCities);
-//     }
-
-//     storedCities.push(cityList);
-
-//     var newCity = JSON.stringify(storedCities);
-
-//     renderCities(newCity);
-// }
-
-// displayCities();
-
 var getPastCities = function(event) {
     var city = event.target.getAttribute("data-city");
 
@@ -293,22 +266,9 @@ var getPastCities = function(event) {
     }
 }
 
-// var displaySaved = function() {
-//     var searchedCities = JSON.parse(localStorage.getItem("savedCity"));
-
-//     if (searchedCities) {
-//         savedCity = searchedCities;
-//     } else {
-//         savedCity = [];
-//     }
-// }
-
-// displaySaved();
-
 var clear = function() {
-    localStorage.removeItem("savedCity");
-    displaySaved();
-    renderCities();
+    localStorage.clear();
+    location.reload();
 }
 
 userFormEl.addEventListener('submit', formSubmitHandler);

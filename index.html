@@ -6,15 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5bac68f234.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="./assets/style.css">
     <title>Weather Dashboard</title>
 </head>
 <body>
 
-    <header class="container-fluid bg-dark text-light mb-5 p-3 text-center">
-        <div class="row justify-content-center">
-          <h3>Weather Dashboard</h3>
+    <header class="container-fluid text-rgb(1, 1, 56) p-3 text-center">
+        <div class="row justify-content-left">
+          <h3>Weather Dashboard <i class="fa-solid fa-cloud-sun"></i></h3>
         </div>
     </header>
 
@@ -25,7 +29,9 @@
                 <form id="user-form" class="form-inline">
                     <input id="getCity" type="text" placeholder="Denver" class="form-input">
                     <button type="submit" class="btn">Search</button>
+                    <!-- <button id="clear-btn" class="clr-btn">Clear History</button> -->
                 </form>
+                <button id="clear-btn" class="clr-btn">Clear History</button>
             </div>
 
             <div class="col-12 col-md-8 city-today">
@@ -42,11 +48,10 @@
         <div class="row">
             <div class="col-12 col-md-3 cities-saved">
                 <ul id="saved-cities"></ul>
-                <button id="clear-btn" class="btn">CLEAR</button>
             </div>
 
-            <div class="col-12 col-md-8 forecasts">
-                <div class="row">
+            <div class="col-12 col-md-8 forecasts justify-content-center">
+                <div class="row justify-content-center">
                     <div class="col-2 day1">
                         <div id="date1"></div>
                         <div id="icon1"><img id="wicon1" src=""></div>
