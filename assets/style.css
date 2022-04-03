@@ -1,26 +1,32 @@
+/* background color and font style for body content */
 body {
     background-color: rgb(155, 229, 252);
     font-family: 'Merriweather Sans', sans-serif;
 }
 
+/* font styling for weather dashboard text */
 h3 {
     font-weight: bold;
     font-size: 2em;
 }
 
+/* font color and margin for search city header */
 h4 {
     color: rgb(1, 1, 56);
     margin-top: 30px;
 }
 
+/* form input text color */
 input {
     color: rgb(1, 1, 56);
 }
 
+/* header background color */
 header {
     background-color: rgb(3, 171, 223);
 }
 
+/* button styling */
 .btn {
   font-size: 1.3rem;
   text-decoration: none;
@@ -36,6 +42,7 @@ header {
   transform: translate(-1px, -1px);
 }
 
+/* clear button styling */
 .clr-btn {
   font-size: 1.3rem;
   text-decoration: none;
@@ -50,18 +57,21 @@ header {
   transform: translate(-1px, -1px);
 }
 
+/* clear button hover styling */
 .clr-btn:hover {
   color: rgb(1, 1, 56);
   background-color: #156da8;
   transform: translate(0, 0);
 }
 
+/* button hover styling */
 .btn:hover {
   color: rgb(1, 1, 56);
   background-color: #156da8;
   transform: translate(0, 0);
 }
 
+/* form input styling */
 .form-input {
   width: 75%;
   margin: 5px 0;
@@ -71,28 +81,33 @@ header {
   display: block;
 }
 
+/* styling for favorable UV index conditions */
 .favorable {
   background-color: rgb(29, 235, 29);
   padding: 2px 6px;
   border-radius: 0.2em;
 }
 
+/* styling for moderate UV index conditions */
 .moderate {
   background-color: yellow;
   padding: 2px 6px;
   border-radius: 0.2em;
 }
 
+/* styling for severe UV index conditions */
 .severe {
   background-color: rgb(252, 61, 61);
   padding: 2px 6px;
   border-radius: 0.2em;
 }
 
+/* Adding padding to the left of the search content */
 .city-search {
   padding-left: 54px;
 }
 
+/* styling and positioning for today's forecast content */
 .city-today {
   text-align: center;
   line-height: 30px;
@@ -100,15 +115,18 @@ header {
   margin-top: 30px;
 }
 
+/* today's date text styling and size */
 #cityCurrentdate {
     font-weight: bold;
     font-size: 1.5em;
 }
 
+/* add padding to the top of the search history buttons */
 .cities-saved {
   padding-top: 30px;
 }
 
+/* 1 day forecast card styling and positioning */
 .day1 {
   margin-right: 15px;
   padding: 0px;
@@ -121,6 +139,7 @@ header {
   font-weight: bold;
 }
 
+/* 2 day forecast card styling and positioning */
 .day2 {
   margin-right: 15px;
   padding: 0px;
@@ -133,6 +152,7 @@ header {
   font-weight: bold;
 }
 
+/* 3 day forecast card styling and positioning */
 .day3 {
   margin-right: 15px;
   padding: 0px;
@@ -145,6 +165,7 @@ header {
   font-weight: bold;
 }
 
+/* 4 day forecast card styling and positioning */
 .day4 {
   margin-right: 15px;
   padding: 0px;
@@ -157,6 +178,7 @@ header {
   font-weight: bold;
 }
 
+/* 5 day forecast card styling and positioning */
 .day5 {
   margin-right: 15px;
   padding: 0px;
