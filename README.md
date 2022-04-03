@@ -28,4 +28,4 @@ The following is an image mockup of the weather dashboard appearance and functio
 
 <br />
 
-![Coding Quiz Challenge](mockup.PNG)
+![Weather Dashboard](mockup.PNG)
