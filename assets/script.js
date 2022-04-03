@@ -113,7 +113,7 @@ var formSubmitHandler = function (event) {
 // function to call the openweathermap api and get the city's coordinates
 function getLocation(location) {
     // save the api url to a new variable
-  var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + location + "&limit=1&appid=13aa7dd75dc2e83e06a576addbc7a591";
+  var apiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + location + "&limit=1&appid=13aa7dd75dc2e83e06a576addbc7a591";
 
     // fetch the openweathermap api
   fetch(apiUrl)
@@ -158,7 +158,7 @@ var displayWeather = function (weatherData, cityName) {
                     displayCityEL.textContent = cityName + " (" + now + ")";
 
                     // get the current weather icon and display
-                    var iconURL = "http://openweathermap.org/img/wn/" + data2.current.weather[0].icon + ".png";
+                    var iconURL = "https://openweathermap.org/img/wn/" + data2.current.weather[0].icon + ".png";
                     $('#wicon-current').attr('src', iconURL);
 
                     // get the current temperature and set text content
@@ -264,7 +264,7 @@ var displayForecast = function (forecastData) {
     // Get day 1 weather data and display text and icon
     temp1.textContent = "Temp: " + forecastData.daily[1].temp.day + " °F";
 
-    var icon1URL = "http://openweathermap.org/img/wn/" + forecastData.daily[1].weather[0].icon + ".png";
+    var icon1URL = "https://openweathermap.org/img/wn/" + forecastData.daily[1].weather[0].icon + ".png";
     $('#wicon1').attr('src', icon1URL);
 
     wind1.textContent = "Wind: " + forecastData.daily[1].wind_speed + " MPH";
@@ -274,7 +274,7 @@ var displayForecast = function (forecastData) {
     // Get day 2 weather data and display text and icon
     temp2.textContent = "Temp: " + forecastData.daily[2].temp.day + " °F";
 
-    var icon2URL = "http://openweathermap.org/img/wn/" + forecastData.daily[2].weather[0].icon + ".png";
+    var icon2URL = "https://openweathermap.org/img/wn/" + forecastData.daily[2].weather[0].icon + ".png";
     $('#wicon2').attr('src', icon2URL);
 
     wind2.textContent = "Wind: " + forecastData.daily[2].wind_speed + " MPH";
@@ -284,7 +284,7 @@ var displayForecast = function (forecastData) {
     // Get day 3 weather data and display text and icon
     temp3.textContent = "Temp: " + forecastData.daily[3].temp.day + " °F";
 
-    var icon3URL = "http://openweathermap.org/img/wn/" + forecastData.daily[3].weather[0].icon + ".png";
+    var icon3URL = "https://openweathermap.org/img/wn/" + forecastData.daily[3].weather[0].icon + ".png";
     $('#wicon3').attr('src', icon3URL);
 
     wind3.textContent = "Wind: " + forecastData.daily[3].wind_speed + " MPH";
@@ -294,7 +294,7 @@ var displayForecast = function (forecastData) {
     // Get day 4 weather data and display text and icon
     temp4.textContent = "Temp: " + forecastData.daily[4].temp.day + " °F";
 
-    var icon4URL = "http://openweathermap.org/img/wn/" + forecastData.daily[4].weather[0].icon + ".png";
+    var icon4URL = "https://openweathermap.org/img/wn/" + forecastData.daily[4].weather[0].icon + ".png";
     $('#wicon4').attr('src', icon4URL);
 
     wind4.textContent = "Wind: " + forecastData.daily[4].wind_speed + " MPH";
@@ -304,7 +304,7 @@ var displayForecast = function (forecastData) {
     // Get day 5 weather data and display text and icon
     temp5.textContent = "Temp: " + forecastData.daily[5].temp.day + " °F";
 
-    var icon5URL = "http://openweathermap.org/img/wn/" + forecastData.daily[5].weather[0].icon + ".png";
+    var icon5URL = "https://openweathermap.org/img/wn/" + forecastData.daily[5].weather[0].icon + ".png";
     $('#wicon5').attr('src', icon5URL);
 
     wind5.textContent = "Wind: " + forecastData.daily[5].wind_speed + " MPH";
